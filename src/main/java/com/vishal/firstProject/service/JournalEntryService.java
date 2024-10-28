@@ -1,5 +1,6 @@
 package com.vishal.firstProject.service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,6 +19,7 @@ public class JournalEntryService {
 
     // to create journal
     public void saveEntry(JournalEntry entry){
+        entry.setDate(LocalDateTime.now());
         journalEntryRepository.save(entry);
     }
 

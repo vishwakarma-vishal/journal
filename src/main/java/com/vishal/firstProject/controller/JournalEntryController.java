@@ -1,6 +1,5 @@
 package com.vishal.firstProject.controller;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -30,7 +29,6 @@ public class JournalEntryController {
     @PostMapping("/create")
     public ResponseEntity<JournalEntry> createJournal(@RequestBody JournalEntry newentry) {
         try {
-            newentry.setDate(LocalDateTime.now());
             journalEntryService.saveEntry(newentry);
             return new ResponseEntity<>(newentry, HttpStatus.CREATED);
         } catch (Exception e) {
