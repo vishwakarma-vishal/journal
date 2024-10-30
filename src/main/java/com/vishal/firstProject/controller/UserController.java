@@ -47,7 +47,7 @@ public class UserController {
     @GetMapping("/id/{myId}")
     public ResponseEntity<?> getUserById(@PathVariable ObjectId myId) {
 
-        User user = userService.getUserById(myId);
+        User user = userService.getUser(myId);
 
         if (user == null) {
             return new ResponseEntity<>("User not found", HttpStatus.NOT_FOUND);
@@ -60,12 +60,12 @@ public class UserController {
     @DeleteMapping("/id/{myId}")
     public ResponseEntity<String> deleteUserById(@PathVariable ObjectId myId) {
 
-        User userInDb = userService.getUserById(myId);
+        User userInDb = userService.getUser(myId);
 
         if (userInDb == null) {
             return new ResponseEntity<>("User not found", HttpStatus.NOT_FOUND);
         } else {
-            userService.deleteUserById(myId);
+            userService.deleteUser(myId);
             return new ResponseEntity<>("User deleted", HttpStatus.OK);
         }
     }

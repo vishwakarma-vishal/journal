@@ -9,7 +9,12 @@ import org.springframework.stereotype.Component;
 import com.vishal.firstProject.entity.User;
 import com.vishal.firstProject.repository.UserRepository;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 @Component
+@Data
 public class UserService {
 
     @Autowired
@@ -26,12 +31,12 @@ public class UserService {
     }
 
     // get one user by id
-    public User getUserById(ObjectId id) {
+    public User getUser(ObjectId id) {
         return userRepository.findById(id).orElse(null);
     }
 
     // delete user by id
-    public void deleteUserById(ObjectId id) {
+    public void deleteUser(ObjectId id) {
         userRepository.deleteById(id);
     }
 

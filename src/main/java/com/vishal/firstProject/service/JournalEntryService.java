@@ -9,32 +9,49 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.vishal.firstProject.entity.JournalEntry;
+import com.vishal.firstProject.entity.User;
 import com.vishal.firstProject.repository.JournalEntryRepository;
 
 @Component
 public class JournalEntryService {
-    
+
     @Autowired
     private JournalEntryRepository journalEntryRepository;
 
+    @Autowired
+    private UserService userService;
+
     // to create journal
-    public void saveEntry(JournalEntry entry){
+    public void saveEntry(JournalEntry entry, String userName) {
+        User user = userService.findByUserName(userName);
+
         entry.setDate(LocalDateTime.now());
+        JournalEntry savedEntry = journalEntryRepository.save(entry);
+
+        user.getJournalEntries().add(savedEntry);
+        userService.createUser(user);
+    }
+
+    // to update journal
+    public void saveEntry(JournalEntry entry) {
         journalEntryRepository.save(entry);
     }
 
     // to get all journals
-    public List<JournalEntry> getAll(){
+    public List<JournalEntry> getAll(String userName) {
         return journalEntryRepository.findAll();
     }
 
     // to get one journal
-    public Optional<JournalEntry> getOne(ObjectId id){
+    public Optional<JournalEntry> getOne(ObjectId id) {
         return journalEntryRepository.findById(id);
     }
 
     // to delete a journal
-    public void deleteOne(ObjectId id){
+    public void deleteOne(ObjectId id, String userName) {
+        User user = userService.findByUserName(userName);
+        user.getJournalEntries().removeIf(x -> x.getId().equals(id));
+        userService.createUser(user);
         journalEntryRepository.deleteById(id);
     }
 }
