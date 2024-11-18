@@ -1,0 +1,58 @@
+# Ignore Maven build directory
+/target/
+
+# Ignore Gradle build directory
+/build/
+
+# Ignore IDE files
+.idea/
+*.iml
+*.iws
+.vscode/
+
+# Ignore logs
+*.log
+*.out
+
+# Ignore temporary files created by OS
+.DS_Store
+Thumbs.db
+
+# Ignore dependency directories
+/.mvn/
+*/target/
+
+# Ignore generated files
+/generated/
+
+# Ignore compiled class files
+*.class
+
+# Ignore jar files
+*.jar
+*.war
+*.ear
+
+# Ignore Spring Boot executable JARs
+*.jar.original
+*.jar.asc
+
+# Ignore local environment files
+application.properties
+application.yml
+
+# Ignore IntelliJ IDEA specific files
+.idea/
+
+# Ignore Maven Wrapper
+/.mvnw
+/.mvnw.cmd
+
+# Ignore Eclipse-specific files
+.project
+.classpath
+.settings/
+
+# Ignore Maven wrapper files
+/.mvnw
+/.mvnw.cmd
